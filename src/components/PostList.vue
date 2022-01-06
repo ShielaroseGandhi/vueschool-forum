@@ -32,12 +32,8 @@
 
 <script>
 import data from "@/data.json";
-import BaseDate from "@/components/BaseDate.vue"
 
 export default {
-	components: {
-		BaseDate
-	},
   props: {
     posts: {
       required: true,

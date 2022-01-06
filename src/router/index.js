@@ -2,6 +2,7 @@ import PageHome from "@/components/PageHome";
 import PageThreadShow from "@/components/PageThreadShow";
 import PageNotFound from "@/components/PageNotFound"
 import { createRouter, createWebHistory } from "vue-router";
+import data from "@/data.json"
 
 const routes = [
 	{
@@ -14,6 +15,25 @@ const routes = [
 		name: "ThreadShow",
 		component: PageThreadShow,
 		props: true,
+		beforeEnter(to, from, next){
+			// Check if the thread exists
+			const threadExists = data.threads.find(thread => thread.id === to.params.id)
+			// if exists, continue
+			if(threadExists) {
+				return next()
+			} else {
+				// if not, redirect to the not found page
+				// substring removes the first initial '/' from the url so we can avoid having two slashes at the beginning of the path
+				next({ 
+					name: "NotFound",
+					params: { pathMatch: to.path.substring(1).split('/') },
+					// preserve existing query and hash
+					query: to.query,
+					hash: to.hash
+				});
+			}
+			
+		}
 	},
 	{
 		path: "/:pathMatch(.*)*",

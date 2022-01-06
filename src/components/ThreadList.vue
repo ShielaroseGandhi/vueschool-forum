@@ -10,7 +10,7 @@
             <router-link :to="{name: 'ThreadShow', params: {id: thread.id}}">{{ thread.title }}</router-link>
           </p>
           <p class="text-faded text-xsmall">
-            By <a href="#">{{ userById(thread.userId).name }}</a> {{ thread.publishedAt }}
+            By <a href="#">{{ userById(thread.userId).name }}</a>, <BaseDate :timestamp="thread.publishedAt"/>
           </p>
         </div>
 
@@ -25,7 +25,9 @@
             <p class="text-xsmall">
               <a href="#">{{ userById(thread.userId).name }}</a>
             </p>
-            <p class="text-xsmall text-faded">{{ thread.publishedAt }}</p>
+            <p class="text-xsmall text-faded">
+              <BaseDate :timestamp="thread.publishedAt"/>
+              </p>
           </div>
         </div>
 
@@ -36,8 +38,12 @@
 
 <script>
 import data from "@/data.json";
+import BaseDate from "@/components/BaseDate.vue"
 
 export default {
+	components: {
+		BaseDate
+	},
   props: {
     threads: {
       type: Array,

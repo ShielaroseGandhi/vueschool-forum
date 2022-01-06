@@ -3,28 +3,21 @@
 		<h1>{{ thread.title }}</h1>
 
 		<PostList :posts="threadPosts"/>
+		<PostEditor @save="addPost" />
 
-		<div class="col-full">
-      <form @submit.prevent="addPost">
-        <div class="form-group">
-          <textarea v-model="newPostText" name="" id="" cols="30" rows="10" class="form-input"/>
-        </div>
-        <div class="form-actions">
-          <button class="btn-blue">Submit post</button>
-        </div>
-      </form>
-    </div>
 	</div>
 </template>
 
 <script>
 import data from "@/data.json";
 import PostList from "@/components/PostList"
+import PostEditor from "@/components/PostEditor"
 
 export default {
 	name: 'ThreadShow',
 	components: {
-		PostList
+		PostList,
+		PostEditor
 	},
   props: {
     id: {
@@ -36,7 +29,6 @@ export default {
 		return {
 			threads: data.threads,
 			posts: data.posts,
-			newPostText: "",
 		};
 	},
   computed: {
@@ -48,20 +40,15 @@ export default {
 		}
   },
 	methods: {
-		addPost(){
-			const postId = "random" + Math.random();
+		addPost(e){
 			const post = {
-				id: postId,
-				text: this.newPostText, 
-				publishedAt: Math.floor(Date.now() / 1000),
+				...e.post,
 				threadId: this.id,
-				userId: '7uVPJS9GHoftN58Z2MXCYDqmNAh2'
+				
 			}
 
 			this.posts.push(post);
-			this.thread.posts.push(postId);
-
-			this.newPostText = "";
+			this.thread.posts.push(post.id);
 		}
 	}
 };

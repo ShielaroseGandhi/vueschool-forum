@@ -1,5 +1,6 @@
 import Home from "@/pages/Home";
 import Forum from "@/pages/Forum";
+import Category from "@/pages/Category";
 import ThreadShow from "@/pages/ThreadShow";
 import NotFound from "@/pages/NotFound"
 import { createRouter, createWebHistory } from "vue-router";
@@ -12,10 +13,16 @@ const routes = [
 		component: Home,
 	},
 	{
+		path: "/category/:id",
+		name: "Category",
+		component: Category,
+		props: true,
+	},
+	{
 		path: "/forum/:id",
 		name: "Forum",
 		component: Forum,
-		props: true
+		props: true,
 	},
 	{
 		path: "/thread/:id",

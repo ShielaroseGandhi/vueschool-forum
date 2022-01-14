@@ -1,12 +1,13 @@
 <template>
   <div class="col-full">
     <div class="forum-list">
-
       <h2 class="list-title">
-        <a href="#">Forums</a>
+        <a href="#">{{ categoryName }}</a>
+        <!-- <router-link :to="{name: 'Category', params: {id: category['.key']}}">
+          {{ category.name }}
+        </router-link> -->
       </h2>
-
-      <div class="forum-listing" v-for="forum in forums" :key="forum.id">
+      <div class="forum-listing" v-for="forum in forums" :key="forum">
         <div class="forum-details">
           <router-link
             :to="{name: 'Forum', params: {id: forum.id}}"
@@ -36,6 +37,10 @@ export default {
     forums: {
       required: true,
       type: Array
+    },
+    categoryName: {
+      type: String,
+      default: 'Forums'
     }
   },
   methods: {

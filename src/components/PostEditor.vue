@@ -27,9 +27,7 @@ export default {
   },
   methods: {
 		save(){
-			const postId = "random" + Math.random();
 			const post = {
-				id: postId,
 				text: this.text, 
 				publishedAt: Math.floor(Date.now() / 1000),
 				userId: '7uVPJS9GHoftN58Z2MXCYDqmNAh2'

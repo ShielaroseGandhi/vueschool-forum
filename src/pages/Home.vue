@@ -5,17 +5,16 @@
 
 <script>
 import CategoryListItem from "@/components/CategoryListItem.vue";
-import data from "@/data.json";
 
 export default {
 	components: {
 		CategoryListItem,
 	},
-	data() {
-		return {
-			categories: data.categories,
-		};
-	},
+	computed: {
+		categories(){
+			return this.$store.state.categories
+		}
+	}
 };
 </script>
 

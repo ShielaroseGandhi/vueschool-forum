@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import data from "@/data.json";
 
 export default {
   props: {
@@ -46,12 +45,14 @@ export default {
       required: true
     }
   },
-  data() {
-		return {
-			posts: data.posts,
-			users: data.users,
-		};
-	},
+  computed: {
+    posts(){
+      return this.$store.state.posts
+    },
+    users(){
+      return this.$store.state.users
+    }
+  },
 	methods: {
 		postById(postId) {
 			return this.posts.find((post) => post.id === postId);

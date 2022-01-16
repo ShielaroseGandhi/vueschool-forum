@@ -7,7 +7,6 @@
 
 <script>
 import ForumList from "@/components/ForumList";
-import data from "@/data.json"
 export default {
   components: {
     ForumList
@@ -20,12 +19,12 @@ export default {
   },
   computed: {
     category(){
-      return data.categories.find(category => category.id === this.id)
+      return this.$store.state.categories.find(category => category.id === this.id)
     }
   },
   methods: {
     getForumsForCategory(category){
-      return data.forums.filter(forum => forum.categoryId === category.id)
+      return this.$store.state.forums.filter(forum => forum.categoryId === category.id)
     }
   }
 }

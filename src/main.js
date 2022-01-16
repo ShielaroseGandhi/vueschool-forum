@@ -1,12 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from '@/router'
+import store from '@/store'
 
 // Create a variable to store our Vue instance
 const forumApp = createApp(App)
 
 // Use Router
 forumApp.use(router)
+forumApp.use(store);
 
 // Able to extend and configure our instance before we mount to the DOM
 

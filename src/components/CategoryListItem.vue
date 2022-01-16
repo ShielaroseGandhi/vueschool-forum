@@ -12,7 +12,6 @@
 
 <script>
 import ForumList from "@/components/ForumList.vue";
-import data from "@/data.json";
 
 export default {
   components: {
@@ -26,7 +25,7 @@ export default {
   },
   methods: {
     getForumsForCategory(category){
-      return data.forums.filter(forum => forum.categoryId === category.id)
+      return this.$store.state.forums.filter(forum => forum.categoryId === category.id)
     }
   }
 }

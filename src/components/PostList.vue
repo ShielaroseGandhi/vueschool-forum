@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import data from "@/data.json";
 
 export default {
   props: {
@@ -40,10 +39,10 @@ export default {
       type: Array
     }
   },
-  data() {
-		return {
-			users: data.users,
-		};
+	computed: {
+		users(){
+			return this.$store.state.users
+		}
 	},
   methods: {
 		userById(userId) {

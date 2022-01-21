@@ -4,13 +4,19 @@ import Category from "@/pages/Category";
 import ThreadShow from "@/pages/ThreadShow";
 import NotFound from "@/pages/NotFound"
 import { createRouter, createWebHistory } from "vue-router";
-import data from "@/data.json"
+import data from "@/data.json";
+import Profile from "@/pages/Profile";
 
 const routes = [
 	{
 		path: "/",
 		name: "Home",
 		component: Home,
+	},
+	{
+		path: "/me",
+		name: "Profile",
+		component: Profile,
 	},
 	{
 		path: "/category/:id",

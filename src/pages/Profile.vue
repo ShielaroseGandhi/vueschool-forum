@@ -4,6 +4,7 @@
       <div class="col-3 push-top">
 
         <UserProfileCard :user="user"/>
+        <UserProfileCardEditor :user="user"/>
 
         <p class="text-xsmall text-faded text-center">
           Member since june 2003, last visited 4 hours ago
@@ -31,11 +32,13 @@
 <script>
 import PostList from '@/components/PostList'
 import UserProfileCard from '@/components/UserProfileCard'
+import UserProfileCardEditor from '@/components/UserProfileCardEditor'
 import { mapGetters } from 'vuex'
 export default {
   components: { 
     PostList, 
-    UserProfileCard 
+    UserProfileCard,
+    UserProfileCardEditor 
     },
   computed: {
     ...mapGetters({ user: 'authUser' }),

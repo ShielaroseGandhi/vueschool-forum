@@ -6,11 +6,11 @@ export default createStore({
 		...data,
 		authId: "VXjpr2WHa8Ux4Bnggym8QFLdv5C3",
 	},
-  getters: {
-    authUser: state => {
+	getters: {
+		authUser: (state) => {
 			const user = state.users.find((user) => user.id === state.authId);
-			
-			if(!user) return null
+
+			if (!user) return null;
 			return {
 				...user,
 				// authUser.posts
@@ -33,8 +33,8 @@ export default createStore({
 					return this.threads.length;
 				},
 			};
-		}
-  },
+		},
+	},
 	actions: {
 		createPost(context, post) {
 			post.id = "random" + Math.random();
@@ -46,10 +46,17 @@ export default createStore({
 				threadId: post.threadId,
 			}); //Append post to thread
 		},
+		updateUser({commit}, user) {
+			commit('setUser', { user, userId: user.id })
+		},
 	},
 	mutations: {
 		setPost(state, { post }) {
 			state.posts.push(post);
+		},
+		setUser(state, { user, userId }) {
+			const userIndex = state.users.findIndex(user => user.id === userId);
+			state.users[userIndex] = user;
 		},
 		appendPostToThread(state, { postId, threadId }) {
 			const thread = state.threads.find((thread) => thread.id === threadId);
